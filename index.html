@@ -3,12 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JVL Clothing Brand</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>KA$H Shop</title>
     <style>
-        /* Additional CSS for the popup */
-        .popup {
-            display: none; /* Hidden by default */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+        }
+        .shop-container {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .shop-item {
+            margin: 20px;
+            border: 1px solid #f00;
+            padding: 20px;
+            width: 200px;
+            background-color: #111;
+        }
+        .shop-item img {
+            width: 100%;
+            height: auto;
+        }
+        .shop-item h2 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .shop-item p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .shop-item button {
+            padding: 10px 20px;
+            background-color: #f00;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .shop-item button:hover {
+            background-color: #c00;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
             position: fixed;
             z-index: 1;
             left: 0;
@@ -16,146 +58,123 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 60px;
         }
-
-        .popup-content {
-            background-color: #fefefe;
-            margin: 15% auto;
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
             padding: 20px;
-            border: 1px solid #888;
+            border: 1px solid #f00;
             width: 80%;
-            max-width: 400px;
-            text-align: center;
+            max-width: 500px;
         }
-
-        .close-btn {
+        .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
+        .close:hover,
+        .close:focus {
+            color: white;
             text-decoration: none;
             cursor: pointer;
         }
-
-        button.btn {
-            background: #0070ba;
-            color: #fff;
-            padding: 10px 20px;
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            background-color: #333;
+            color: white;
+        }
+        .modal-content button {
+            padding: 10px;
+            background-color: #f00;
             border: none;
+            color: white;
             cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #c00;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>JVL</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#shop">Shop</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Welcome to JVL</h2>
-            <p>Discover our latest collections</p>
-            <a href="#shop" class="cta-button">Shop Now</a>
+    <h1>KA$H Shop</h1>
+    <div class="shop-container">
+        <!-- KA$H Hoodie -->
+        <div class="shop-item">
+            <img src="kash-hoodie.jpg" alt="KA$H Hoodie"> <!-- Replace with your hoodie image -->
+            <h2>KA$H Hoodie</h2>
+            <p>$49.99</p>
+            <button onclick="openModal()">Buy Now</button>
         </div>
-    </section>
-
-    <section id="shop">
-        <div class="container">
-            <h2>Featured Collections</h2>
-            <div class="product-grid">
-                <!-- Repeat this block for each product -->
-                <div class="product">
-                    <img src="path/to/image.jpg" alt="Product Name">
-                    <h3>Product Name</h3>
-                    <p>$Price</p>
-                    <a href="#" class="btn">Add to Cart</a>
-                </div>
-                <!-- End product block -->
-            </div>
+        <!-- KA$H Tee -->
+        <div class="shop-item">
+            <img src="kash-tee.jpg" alt="KA$H Tee"> <!-- Replace with your tee image -->
+            <h2>KA$H Tee</h2>
+            <p>$29.99</p>
+            <button onclick="openModal()">Buy Now</button>
         </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>Share your brand story here.</p>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form action="#" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <section id="donate">
-        <div class="container">
-            <h2>Donate</h2>
-            <button id="donate-btn" class="btn">Donate Now</button>
-        </div>
-    </section>
-
-    <!-- Popup for Donation -->
-    <div id="donation-popup" class="popup">
-        <div class="popup-content">
-            <span id="close-popup" class="close-btn">&times;</span>
-            <h2>Thank You for Your Interest!</h2>
-            <p>Click "Okay" to proceed to the PayPal donation page.</p>
-            <button id="proceed-btn" class="btn">Okay</button>
+        <!-- KA$H Blue and Red Tee -->
+        <div class="shop-item">
+            <img src="kash-blue-red-tee.jpg" alt="KA$H Blue and Red Tee"> <!-- Replace with your blue and red tee image -->
+            <h2>KA$H Blue and Red Tee</h2>
+            <p>$34.99</p>
+            <button onclick="openModal()">Buy Now</button>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 JVL Clothing Brand</p>
-            <p>Follow us: <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
+    <!-- Modal for Order Form -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Enter Your Details</h2>
+            <form id="orderForm" action="https://formspree.io/f/xdknbbpr" method="POST">
+                <input type="text" name="fullName" placeholder="Full Name" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <button type="submit">Submit</button>
+            </form>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Show the donation popup
-        document.getElementById('donate-btn').addEventListener('click', () => {
-            document.getElementById('donation-popup').style.display = 'block';
-        });
+        // Open the modal
+        function openModal() {
+            document.getElementById('orderModal').style.display = 'block';
+        }
 
-        // Close the donation popup
-        document.getElementById('close-popup').addEventListener('click', () => {
-            document.getElementById('donation-popup').style.display = 'none';
-        });
+        // Close the modal
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
 
-        // Redirect to PayPal on clicking the "Okay" button
-        document.getElementById('proceed-btn').addEventListener('click', () => {
-            const paypalLink = 'https://paypal.me/JW094?country.x=CA&locale.x=en_US';
-            window.location.href = paypalLink;
+        // Handle form submission
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = event.target;
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                closeModal();
+                if (response.ok) {
+                    alert('You will receive a message on your phone or email with instructions on how to pay.');
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            });
         });
     </script>
+
 </body>
 </html>
