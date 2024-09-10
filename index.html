@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JVL Clothing Brand</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for the popup */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .popup-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button.btn {
+            background: #0070ba;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -70,11 +116,46 @@
         </div>
     </section>
 
+    <section id="donate">
+        <div class="container">
+            <h2>Donate</h2>
+            <button id="donate-btn" class="btn">Donate Now</button>
+        </div>
+    </section>
+
+    <!-- Popup for Donation -->
+    <div id="donation-popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup" class="close-btn">&times;</span>
+            <h2>Thank You for Your Interest!</h2>
+            <p>Click "Okay" to proceed to the PayPal donation page.</p>
+            <button id="proceed-btn" class="btn">Okay</button>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 JVL Clothing Brand</p>
             <p>Follow us: <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
         </div>
     </footer>
+
+    <script>
+        // Show the donation popup
+        document.getElementById('donate-btn').addEventListener('click', () => {
+            document.getElementById('donation-popup').style.display = 'block';
+        });
+
+        // Close the donation popup
+        document.getElementById('close-popup').addEventListener('click', () => {
+            document.getElementById('donation-popup').style.display = 'none';
+        });
+
+        // Redirect to PayPal on clicking the "Okay" button
+        document.getElementById('proceed-btn').addEventListener('click', () => {
+            const paypalLink = 'https://paypal.me/JW094?country.x=CA&locale.x=en_US';
+            window.location.href = paypalLink;
+        });
+    </script>
 </body>
 </html>
